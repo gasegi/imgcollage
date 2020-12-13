@@ -4,3 +4,9 @@
 
 This repository was created on December 13, 2020, as on impulse.
 
+## Usage
+
+このページにアクセス: https://gasegi.github.io/imgcollage/index.html
+
+Access: https://gasegi.github.io/imgcollage/index.html
+
