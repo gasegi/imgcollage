@@ -15,6 +15,7 @@
       var preview = document.getElementById('preview');
       var fileInput = document.getElementById('file-input');
       const fileinputform = document.getElementById('collage-url')
+      const errormessage = document.getElementById('error-message')
 
       dropZone.addEventListener('dragover', function (e) {
         e.stopPropagation();
@@ -44,7 +45,7 @@
           return pre.then(_ => new Promise((s, t) => {
 
             var fr = new FileReader();
-            
+
             fr.onload = function () {
               const arrayBuffer = this.result
               // const array = new Uint8Array(arrayBuffer)
@@ -59,6 +60,7 @@
                 })
                 .catch(err => {
                   console.error(err)
+                  errormessage.innerHTML  = 'エラーが発生しました。画像URLを指定した場合他の画像をためしてみてください。: ' +err.message 
                 })
                 .then(res => {
                   s()
@@ -131,6 +133,7 @@
         var img = document.createElement('img');
         // img.setAttribute('src', fr.result);
         img.setAttribute('src', res);
+        img.setAttribute('style', "width: 640px;");
         preview.innerHTML = '';
         preview.appendChild(img);
       }
@@ -165,6 +168,7 @@
   <div>
     コラージュする対象の画像。何も書かない場合はこちらで用意したロゴを上書きします。
     <input id="collage-url" type="text">
+    <p id='error-message' style="color:red;"></p>
     <div id="drop-zone" style="border: 1px solid; padding: 30px;">
       <p>ファイルをドラッグ＆ドロップもしくは</p>
       <input type="file" name="file" id="file-input">
